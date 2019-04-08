@@ -1,0 +1,91 @@
+﻿@using MVCBookStore.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<DONDATHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản lý đơn hàng</h2>
+<br />
+
+<table class="table table-striped table-bordered table-dark">
+    <tr>
+        <th scope="col">Tên Khách Hàng</th>
+        <th scope="col">Địa chỉ</th>
+        <th scope="col">Số điện thoại</th>
+        <th scope="col">Tên TK</th>
+        <th scope="col">Thanh toán</th>
+        <th scope="col">Tình trạng giỏ hàng</th>
+        <th scope="col">Ngày đặt</th>
+        <th scope="col">Ngày giao</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiachiKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDienthoaiKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KHACHHANG.HoTen)
+        </td>
+        @if (item.Dathanhtoan.Equals(true))
+        {
+            <td>
+                Đã thanh toán
+            </td>
+        }
+        else
+        {
+            <td>
+                Chưa thanh toán
+            </td>
+        }
+
+        @if (item.Tinhtranggiohang.Equals(true))
+        {
+            <td>
+                Đã gửi
+            </td>
+        }
+        else
+        {
+            <td>
+                Vẫn còn
+            </td>
+        }
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Ngaydat)*@
+            @String.Format("{0:MM/dd/yyyy}", item.Ngaydat)
+        </td>
+        <td>
+            @*@Html.DisplayFor(modelItem => item.Ngaygiao)*@
+            @String.Format("{0:MM/dd/yyyy}", item.Ngaygiao)
+        </td>
+
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id = item.MaDonHang })*@
+            @Html.ActionLink("Details", "Details", new { id = item.MaDonHang })
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.MaDonHang })*@
+        </td>
+    </tr>
+    }
+
+</table>
+
+<div class="clear">
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber)/@Model.PageCount
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </div>
+</div>

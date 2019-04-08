@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MVCBookStore.Models.TACGIA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diachi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tieusu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dienthoai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnhTG)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenTG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diachi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tieusu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dienthoai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnhTG)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaTG }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaTG }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaTG })
+        </td>
+    </tr>
+}
+
+</table>

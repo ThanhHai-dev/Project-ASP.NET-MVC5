@@ -1,0 +1,39 @@
+﻿@using MVCBookStore.Models;
+
+@{
+    if (Session["GioHang"] != null)
+    {
+        <div class="btn-group">
+
+            <button data-toggle="dropdown" class="btn btn-mini dropdown-toggle">
+                Giỏ hàng:
+                @{
+                    List<GioHang> quantity = (List<GioHang>)Session["GioHang"];
+                    var sl = (quantity.Sum(x => x.Soluong));
+                }
+                @sl
+                <span class="caret"></span>
+            </button>
+
+            <ul class="dropdown-menu">
+                @foreach (var giohang in (List<GioHang>)Session["GioHang"])
+                {
+                    <li>@giohang.SACH.Tensach (@giohang.Soluong)</li>
+                }
+
+                @*<li>Action</li>
+                <li>Another action</li>
+                <li>Something else here</li>*@
+            </ul>
+        </div>
+    }
+    else
+    {
+        <div class="btn-group">
+
+            <div data-toggle="dropdown" class="btn btn-mini dropdown-toggle">
+                Giỏ hàng: 0
+            </div>
+        </div>
+    }
+}

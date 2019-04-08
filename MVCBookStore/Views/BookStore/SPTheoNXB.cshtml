@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "SPTheoNXB";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="content-holder" class="container-fluid container">
+    <section class="row-fluid">
+        <div class="heading-bar">
+            <h2>Sách theo nhà xuất bản: </h2>
+            <span class="h-line"></span>
+        </div>
+
+        <section class="span9 first">
+            <div class="product_sort">
+                <div class="row-1">
+                    <div class="left">
+                        <span class="s-title">Sort by</span>
+                        <span class="list-nav">
+                            <select name="">
+                                <option>Position</option>
+                                <option>Position 2</option>
+                                <option>Position 3</option>
+                                <option>Position 4</option>
+                            </select>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="list-holder">
+                @foreach (var sach in Model)
+                {
+                    <article class="item-holder">
+                        <div class="span2">
+                            <a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })"><img src="~/images/@sach.Anhbia" alt="@sach.Tensach" /></a>
+                        </div>
+                        <div class="span10">
+                            <div class="title-bar"><a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })">@sach.Tensach</a> <span>by Khalid Hoessini</span></div>
+                            <strong>1 Reviews</strong>
+                            <span class="rating-bar"><img alt="Rating Star" src="~/images/rating-star.png"></span>
+                            <p>@sach.Mota</p>
+                            <div class="cart-price">
+                                <a href="@Url.Action("DatHang", "GioHang", new { id = sach.Masach}, null)" class="cart-btn2">Add to Cart</a>
+                                <span class="price">$129.90</span>
+                            </div>
+                        </div>
+                    </article>
+                }
+            </section>
+
+            <div class="blog-footer">
+                <div class="pagination">
+                    <ul>
+                        <li><a href="#">Prev</a></li>
+                        <li class="active">
+                            <a href="#">1</a>
+                        </li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="span3">
+
+            <div class="side-holder">
+                <article class="shop-by-list">
+                    <h2>Shop by</h2>
+                    <div class="side-inner-holder">
+                        <strong class="title">Category</strong>
+                        <ul class="side-list">
+                            <li><a href="grid-view.html">Fiction (15)</a></li>
+                            <li><a href="grid-view.html">Healthcare (15)</a></li>
+                            <li><a href="grid-view.html">Technology (15)</a></li>
+                            <li><a href="grid-view.html">Science(15)</a></li>
+                        </ul>
+                        <strong class="title">Price</strong>
+                        <ul class="side-list">
+                            <li><a href="#">$0.00 - $10,00.00 (13)</a></li>
+                            <li><a href="#">$10,00.00 - $20,00.00 (2)</a></li>
+                        </ul>
+                        <strong class="title">Author</strong>
+                        <ul class="side-list">
+                            <li><a href="book-detail.html">Khalid Hoessini (9)</a></li>
+                            <li><a href="book-detail.html">William Blake (2)</a></li>
+                            <li><a href="book-detail.html">Anna Kathrinena (1)</a></li>
+                            <li><a href="book-detail.html">Gray Alvin (3)</a></li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+
+
+            <div class="side-holder">
+                <article class="l-reviews">
+                    <h2>Latest Reviews</h2>
+                    <div class="side-inner-holder">
+                        <article class="r-post">
+                            <div class="r-img-title">
+                                <img src="~/images/image21.jpg" />
+                                <div class="r-det-holder">
+                                    <strong class="r-author"><a href="book-detail.html">The Kite Runner</a></strong>
+                                    <span class="r-by">by Khalid Hoessini</span>
+                                    <span class="rating-bar"><img src="~/images/rating-star.png" alt="Rating Star" /></span>
+                                </div>
+                            </div>
+                            <span class="r-type">Vivamus bibendum massa</span>
+                            <p>“ Suspendisse tortor lacus, suscipit eget pharetra sed, ornare sed elit. Curabitur mollis, justo sit amet fermentum ” </p>
+                            <span class="r-author">Review by BookShoppe’</span>
+                        </article>
+                        <article class="r-post">
+                            <div class="r-img-title">
+                                <img src="~/images/image21.jpg" />
+                                <div class="r-det-holder">
+                                    <strong class="r-author"><a href="book-detail.html">The Kite Runner</a></strong>
+                                    <span class="r-by">by Khalid Hoessini</span>
+                                    <span class="rating-bar"><img src="~/images/rating-star.png" alt="Rating Star" /></span>
+                                </div>
+                            </div>
+                            <span class="r-type">Vivamus bibendum massa</span>
+                            <p>“ Suspendisse tortor lacus, suscipit eget pharetra sed, ornare sed elit. Curabitur mollis, justo sit amet fermentum ” </p>
+                            <span class="r-author">Review by BookShoppe’</span>
+                        </article>
+                    </div>
+                </article>
+            </div>
+
+
+            <div class="side-holder">
+                <article class="price-range">
+                    <h2>Price Range</h2>
+                    <div class="side-inner-holder">
+                        <p>Select the price range for better search</p>
+                        <div id="slider-range"></div>
+                        <p> <input type="text" id="amount" class="r-input"> </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+    </section>
+</section>
+

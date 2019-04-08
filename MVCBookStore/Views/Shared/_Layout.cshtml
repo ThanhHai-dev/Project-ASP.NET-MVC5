@@ -1,0 +1,255 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - Book Store</title>
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width">
+
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bs.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/main-slider.css" />
+    <!--[if lte IE 10]><link rel="stylesheet" type="text/css" href="css/customIE.css" /><![endif]-->
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font-awesome-ie7.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/Content/jquery.booklet.latest.css" type="text/css" rel="stylesheet" media="screen, projection, tv" />
+    <noscript>
+        <link rel="stylesheet" type="text/css" href="~/Content/noJS.css" />
+    </noscript>
+
+
+    <link href="~/Content/switcher.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" name="skins" href="~/Content/default.css" type="text/css" media="all">
+
+    
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+
+        <section class="top-nav-bar">
+            <section class="container-fluid container">
+                <section class="row-fluid">
+                    <section class="span6">
+                        <ul class="top-nav">
+                            <li><a href="@Url.Action("Index", "BookStore")" class="active">Home page</a></li>
+                            <li><a href="grid-view.html">Online Store</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="shortcodes.html">Short Codes</a></li>
+                            <li><a href="blog-detail.html">News</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </section>
+                    <section class="span6 e-commerce-list">
+                        @Html.Partial("_LoginPartial")
+                        <div class="c-btn">
+                            <a href="@Url.Action("Index", "GioHang")" class="cart-btn">Cart</a>
+
+                            @{Html.RenderAction("GioHangPartial", "GioHang");}
+                        </div>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+        <header id="main-header">
+            <section class="container-fluid container">
+                <section class="row-fluid">
+                    <section class="span4">
+                        <h1 id="logo"> <a href="@Url.Action("Index", "BookStore")"><img src="~/images/logo.png" /></a> </h1>
+                    </section>
+                    <section class="span8">
+                        <ul class="top-nav2">
+                            <li><a href="checkout.html">My Account</a></li>
+                            <li><a href="@Url.Action("Index", "GioHang")">My Cart</a></li>
+                            <li><a href="@Url.Action("Thanhtoan", "GioHang")">Checkout</a></li>
+                            <li><a href="order-recieved.html">Track Your Order</a></li>
+                        </ul>
+                        <div class="search-bar">
+                            @using (Html.BeginForm("TatcaSach", "BookStore", FormMethod.Get))
+                            {
+                                @Html.TextBox("searchString")<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            }
+                        </div>
+                    </section>
+                </section>
+            </section>
+
+            <nav id="nav">
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav">
+                                <li> <a href="@Url.Action("TatcaSach", "BookStore")">Books</a> </li>
+                                <li> <a href="grid-view.html">NOOK Books</a></li>
+                                <li><a href="grid-view.html">Textbooks</a></li>
+                                <li><a href="grid-view.html">News stand</a></li>
+                                <li><a href="grid-view.html">Teens</a></li>
+                                <li><a href="grid-view.html">Toys & Games</a></li>
+
+                                <li class="dropdown">
+                                    @Html.Action("Chude", "BookStore")
+                                </li>
+                                <li class="dropdown">
+                                    @Html.Action("Nhaxuatban", "BookStore")
+                                </li>
+                                <li> <a href="grid-view.html">Music</a></li>
+                                <li> <a href="grid-view.html">Gift Cards</a> </li>
+                                <li><a href="grid-view.html">Deals & Offers</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </nav>
+
+        </header>
+
+        <div>
+            @RenderBody()
+        </div>
+
+
+        <section class="container-fluid footer-top1">
+            <section class="container">
+                <section class="row-fluid">
+                    <figure class="span3">
+                        <h4>Newsletter</h4>
+                        <p>Subscribe to be the first to know about Best Deals and Exclusive Offers!</p>
+                        <input name="" type="text" class="field-bg" value="Enter Your Email" />
+                        <input name="" type="submit" value="Subscribe" class="sub-btn" />
+                    </figure>
+                    <figure class="span3">
+                        <h4>Twitter</h4>
+                        <ul class="tweets-list">
+                            <li>Bookshoppe’- WooCommerce theme by crunchpress http<a href="#">://z.8o/XcexW23Q #envato</a></li>
+                            <li>Bookshoppe’- WooCommerce theme by crunchpress http<a href="#">://z.8o/XcexW23Q #envato</a></li>
+                        </ul>
+                    </figure>
+                    <figure class="span3">
+                        <h4>Location</h4>
+                        <p>5/23, Loft Towers, Business Center, 6th Floor, Media City, Dubai.</p>
+                        <div>
+                            <ul class="phon-list">
+                                <li>(971) 438-555-314</li>
+                                <li>(971) 367-252-333</li>
+                            </ul>
+                        </div> <span class="mail-list">
+                            <a href="#">info@companyname</a><br />
+                            <a href="#">
+                                <span class="__cf_email__" data-cfemail="32585d504172515d5f42535c4b5c535f571c515d5f">[email&#160;protected]</span>
+                                <script cf-hash='f9e31' type="text/javascript">
+                                                                                                            /* <![CDATA[ */!function () { try { var t = "currentScript" in document ? document.currentScript : function () { for (var t = document.getElementsByTagName("script"), e = t.length; e--;)if (t[e].getAttribute("cf-hash")) return t[e] }(); if (t && t.previousSibling) { var e, r, n, i, c = t.previousSibling, a = c.getAttribute("data-cfemail"); if (a) { for (e = "", r = parseInt(a.substr(0, 2), 16), n = 2; a.length - n; n += 2)i = parseInt(a.substr(n, 2), 16) ^ r, e += String.fromCharCode(i); e = document.createTextNode(e), c.parentNode.replaceChild(e, c) } } } catch (u) { } }();/* ]]> */</script>
+                            </a>
+                        </span>
+                    </figure>
+                    <figure class="span3">
+                        <h4>Opening Time</h4>
+                        <p>Monday-Friday ______8.00 to 18.00</p>
+                        <p>Saturday ____________ 9.00 to 18.00</p>
+                        <p>Sunday _____________10.00 to 16.00</p>
+                        <p>Every 30 day of month Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </figure>
+                </section>
+            </section>
+        </section>
+
+
+        <section class="container-fluid footer-top2">
+            <section class="social-ico-bar">
+                <section class="container">
+                    <section class="row-fluid">
+                        <div id="socialicons" class="hidden-phone"> <a id="social_linkedin" class="social_active" href="#" title="Visit Google Plus page"><span></span></a> <a id="social_facebook" class="social_active" href="#" title="Visit Facebook page"><span></span></a> <a id="social_twitter" class="social_active" href="#" title="Visit Twitter page"><span></span></a> <a id="social_youtube" class="social_active" href="#" title="Visit Youtube"><span></span></a> <a id="social_vimeo" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_trumblr" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_google_plus" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_dribbble" class="social_active" href="#" title="Visit Vimeo"><span></span></a> <a id="social_pinterest" class="social_active" href="#" title="Visit Vimeo"><span></span></a> </div>
+                        <ul class="footer2-link">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="contact.html">Customer Service</a></li>
+                            <li><a href="order-recieved.html">Orders Tracking</a></li>
+                        </ul>
+                    </section>
+                </section>
+            </section>
+        </section>
+
+
+
+        <footer id="main-footer">
+            <section class="social-ico-bar">
+                <section class="container">
+                    <section class="row-fluid">
+                        <article class="span6">
+                            <p>© 2013 BookShoppe’ - Premium WooCommerce Theme. </p>
+                        </article>
+                        <article class="span6 copy-right">
+                            <p>Designed by <a href="http://www.crunchpress.com/">Crunchpress.com</a></p>
+                        </article>
+                    </section>
+                </section>
+            </section>
+        </footer>
+    </div>
+
+    <script type="text/javascript" src="~/Scripts/lib.js"></script>
+    <script type="text/javascript" src="~/Scripts/modernizr.js"></script>
+    <script type="text/javascript" src="~/Scripts/easing.js"></script>
+    <script type="text/javascript" src="~/Scripts/bs.js"></script>
+    <script type="text/javascript" src="~/Scripts/bxslider.js"></script>
+    <script type="text/javascript" src="~/Scripts/input-clear.js"></script>
+    <script src="~/Scripts/range-slider.js"></script>
+    <script src="~/Scripts/jquery.zoom.js"></script>
+    <script type="text/javascript" src="~/Scripts/bookblock.js"></script>
+    <script type="text/javascript" src="~/Scripts/social.js"></script>
+    <script src="~/Scripts/jquery.booklet.latest.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#mybook").booklet({
+                width: '100%',
+                height: 430,
+                auto: true,
+                //speed: 250,
+            });
+        });
+    </script>
+
+    <noscript>
+        <style>
+            #socialicons > a span {
+                top: 0px;
+                left: -100%;
+                -webkit-transition: all 0.3s ease;
+                -moz-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                -ms-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+
+            #socialicons > ahover div {
+                left: 0px;
+            }
+        </style>
+    </noscript>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        $(document).ready(function () {
+            $('.social_active').hoverdir({});
+        })
+                            /* ]]> */
+    </script>
+    <div class="switcher"></div>
+
+    <script type="text/javascript" src="~/Scripts/cookie.js"></script>
+    <script type="text/javascript" src="~/Scripts/colorswitcher.js"></script>
+    <script type="text/javascript" src="~/Scripts/custom.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    
+</body>
+</html>

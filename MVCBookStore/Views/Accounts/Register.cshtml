@@ -1,0 +1,131 @@
+﻿@model MVCBookStore.Models.KHACHHANG
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="content-holder" class="container-fluid container">
+    <section class="row-fluid">
+        <div class="heading-bar">
+            <h2>Trang đăng kí</h2>
+            <span class="h-line"></span>
+        </div>
+
+        <section class="checkout-holder">
+            <section class="span9 first">
+
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <strong class="green-t">@ViewBag.Message</strong>
+                                @using (Html.BeginForm("Register", "Accounts", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true)
+                                    <form class="form-horizontal">
+                                        
+                                        <ul class="billing-form">
+
+                                            <li>
+                                                <div class="control-group">
+                                                    @Html.LabelFor(model => model.Taikhoan)
+                                                    <div class="controls">
+                                                        @Html.TextBoxFor(model => model.Taikhoan)
+                                                        @Html.ValidationMessageFor(model => model.Taikhoan)
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="control-group">
+                                                    @Html.LabelFor(model => model.Matkhau)
+
+                                                    <div class="controls">
+                                                        @Html.PasswordFor(model => model.Matkhau)
+                                                        @Html.ValidationMessageFor(model => model.Matkhau)
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="control-group">
+                                                    @Html.LabelFor(model => model.Nhaplaimatkhau)
+
+                                                    <div class="controls">
+                                                        @Html.PasswordFor(model => model.Nhaplaimatkhau)
+                                                        @Html.ValidationMessageFor(model => model.Nhaplaimatkhau)
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="control-group">
+                                                    @Html.LabelFor(model => model.Email)
+
+                                                    <div class="controls">
+                                                        @Html.TextBoxFor(model => model.Email)
+                                                        @Html.ValidationMessageFor(model => model.Email)
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="control-group">
+                                                    @Html.LabelFor(model => model.HoTen)
+                                                    <div class="controls">
+                                                        @Html.TextBoxFor(model => model.HoTen)
+                                                        @Html.ValidationMessageFor(model => model.HoTen)
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="inputLastname">Ngày Sinh</label>
+                                                    <div class="controls">
+                                                        <input type="date" name="Ngaysinh">
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="control-group">
+                                                    @Html.LabelFor(model => model.DiachiKH)
+
+                                                    <div class="controls">
+                                                        @Html.TextBoxFor(model => model.DiachiKH)
+                                                    </div>
+                                                </div>
+
+                                                <div class="control-group">
+                                                    @Html.LabelFor(model => model.DienthoaiKH)
+
+                                                    <div class="controls">
+                                                        @Html.TextBoxFor(model => model.DienthoaiKH)
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                            <li>
+
+                                                <div class="control-group">
+                                                    <div class="controls">
+                                                        <strong class="green-t">* Required Fields</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="control-group">
+                                                    <div class="controls">
+                                                        <button type="Submit" class="more-btn">Register</button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </form>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </section>
+        </section>
+
+    </section>
+</section>
+

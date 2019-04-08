@@ -1,0 +1,17 @@
+﻿@model IEnumerable<MVCBookStore.Models.SACH>
+
+<section class="row-fluid ">
+    @foreach (var sach in Model)
+    {
+        <figure class="span4 s-product">
+            <div class="s-product-img"><a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })"><img src="~/images/@sach.Anhbia" alt="@sach.Tensach" /></a></div>
+            <article class="s-product-det">
+                <h3><a href="@Url.Action("Details", "BookStore", new { id = sach.Masach })"> @sach.Tensach</a></h3>
+                <p>@sach.Mota</p>
+                <span class="rating-bar"><img src="~/images/rating-star.png" alt="Rating Star" /></span>
+                <div class="cart-price"> <a href="@Url.Action("DatHang", "GioHang", new { id = sach.Masach}, null)" class="cart-btn2">Add to Cart</a> <span class="price">@sach.Giaban VND</span> </div>
+                <span class="sale-icon">Sale</span>
+            </article>
+        </figure>
+    }
+</section>

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<MVCBookStore.Models.NHAXUATBAN>
+
+<a class="dropdown-toggle" href="grid-view.html" data-toggle="dropdown">Nhà xuất bản <b class="caret"></b> </a>
+
+<ul class="dropdown-menu">
+    @foreach (var item in Model)
+    {
+        <li><a href="@Url.Action("SPTheoNXB","BookStore", new { id = item.MaNXB })">@item.TenNXB</a></li>
+    }
+</ul>

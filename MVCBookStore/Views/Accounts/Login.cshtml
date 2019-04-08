@@ -1,0 +1,77 @@
+﻿@model MVCBookStore.Models.KHACHHANG
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="content-holder" class="container-fluid container">
+    <section class="row-fluid">
+        <div class="heading-bar">
+            <h2>Trang đăng nhập</h2>
+            <span class="h-line"></span>
+        </div>
+
+        <section class="checkout-holder">
+            <section class="span9 first">
+
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div id="collapseOne" class="accordion-body collapse in">
+                            <div class="accordion-inner">
+                                <div class="span6 check-method-left">
+                                    <strong class="green-t">Bạn chưa có tài khoản?</strong>
+                                    <p>Vui lòng đăng kí để có những trải nghiệm tốt hơn!</p>
+                                    <p>Register with us for future convenience:</p>
+                                    <p>
+                                        * Fast and easy check out <br />
+                                        * Easy access to your order history and status
+                                    </p>
+                                    <a href="@Url.Action("Register", "Accounts")" class="more-btn">Continue</a>
+                                </div>
+                                <div class="span5 check-method-right">
+                                    <strong class="green-t">Login</strong>
+
+                                    @using (Html.BeginForm("Login", "Accounts", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true)
+                                        <form class="form-horizontal">
+                                            <div class="control-group">
+                                                @Html.LabelFor(model => model.Taikhoan)
+                                                <div class="controls">
+                                                    @Html.TextBoxFor(model => model.Taikhoan)
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                @Html.ValidationMessageFor(model => model.Taikhoan)
+                                            </div>
+                                            <div class="control-group">
+                                                @Html.LabelFor(model => model.Matkhau)
+
+                                                <div class="controls">
+                                                    @Html.PasswordFor(model => model.Matkhau)
+                                                </div>
+                                            </div>
+                                            <div class="control-group">
+                                                @Html.ValidationMessageFor(model => model.Matkhau)
+                                            </div>
+
+                                            <div class="control-group">
+                                                <div class="controls">
+                                                    <button type="Submit" class="more-btn">Login</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+
+    </section>
+</section>
+

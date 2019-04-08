@@ -1,0 +1,20 @@
+﻿
+@if (Session["MaKH"] != null)
+{
+    using (Html.BeginForm("LogOut", "Accounts", FormMethod.Post))
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                Hello: @Session["HoTen"].ToString()
+            </li>
+            <li><a href="@Url.Action("LogOut", "Accounts")">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Login", "Login", "Accounts")</li>
+        <li>@Html.ActionLink("Create an account", "Register", "Accounts")</li>
+    </ul>
+}

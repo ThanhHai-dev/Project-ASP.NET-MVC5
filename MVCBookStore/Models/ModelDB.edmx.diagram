@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2c4e985b9919412c892e5e5b8be7266f" Name="Diagram1">
+        <EntityTypeShape EntityType="QLBANSACHModel.CHUDE" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel.CTDATHANG" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel.DONDATHANG" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel.NHAXUATBAN" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel.SACH" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel.TACGIA" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLBANSACHModel.VIETSACH" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="QLBANSACHModel.FK_Chude" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel.FK_Donhang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel.FK_Sach" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel.FK_Khachhang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel.FK_NhaXB" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel.FK_Sach2" ManuallyRouted="false" />
+        <AssociationConnector Association="QLBANSACHModel.FK_Tacgia" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

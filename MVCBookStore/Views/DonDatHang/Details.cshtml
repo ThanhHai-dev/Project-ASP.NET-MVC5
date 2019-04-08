@@ -1,0 +1,119 @@
+﻿@model MVCBookStore.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết đơn đặt hàng</h2>
+
+<div>
+    <h4>Đơn đặt hàng: @Model.MaDonHang </h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Khách Hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenKH)
+        </dd>
+
+        <dt>
+            Địa Chỉ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiachiKH)
+        </dd>
+
+        <dt>
+            Số Điện Thoại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoDienthoaiKH)
+        </dd>
+
+        <dt>
+            Tên TK
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.HoTen)
+        </dd>
+        <dt>
+            Thanh toán
+        </dt>
+
+        @if (Model.Dathanhtoan.Equals(true))
+        {
+            <dd>
+                Đã thanh toán
+            </dd>
+        }
+        else
+        {
+            <dd>
+                Chưa thanh toán
+            </dd>
+        }
+
+        <dt>
+            Tình trạng giỏ hàng
+        </dt>
+
+        @if (Model.Tinhtranggiohang.Equals(true))
+        {
+            <dd>
+                Đã gửi
+            </dd>
+        }
+        else
+        {
+            <dd>
+                Vẫn còn
+            </dd>
+        }
+
+        <dt>
+            Ngày đặt
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Ngaydat)*@
+            @String.Format("{0:MM/dd/yyyy}", Model.Ngaydat)
+        </dd>
+
+        <dt>
+            Ngày giao
+
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.Ngaygiao)*@
+            @String.Format("{0:MM/dd/yyyy}", Model.Ngaygiao)
+        </dd>
+    </dl>
+</div>
+<br />
+<table class="table table-striped table-bordered table-dark">
+    <tr>
+        <th>Tên Sản Phẩm</th>
+        <th>Số Lượng</th>
+        <th>Giá bán</th>
+    </tr>
+    @foreach (var item in Model.CTDATHANGs)
+    {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.SACH.Tensach)</td>
+        <td>@Html.DisplayFor(modelItem => item.Soluong)</td>
+        <td>@Html.DisplayFor(modelItem => item.Dongia) VND</td>
+    </tr>
+    }
+    </table>
+
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.MaDonHang }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>

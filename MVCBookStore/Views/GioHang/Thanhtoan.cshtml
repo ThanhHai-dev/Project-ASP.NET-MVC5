@@ -1,0 +1,175 @@
+﻿@using MVCBookStore.Models
+@model MVCBookStore.Models.KHACHHANG
+@{
+    ViewBag.Title = "Thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    if (Session["GioHang"] != null)
+    {
+        <section id="content-holder" class="container-fluid container">
+            <section class="row-fluid">
+                <section class="span12 cart-holder">
+                    <div class="heading-bar">
+                        <h2>@ViewBag.Title</h2>
+                        <span class="h-line"></span>
+                    </div>
+
+                    <div class="cart-table-holder">
+                        <table width="100%" border="0" cellpadding="10">
+                            <tr>
+                                <th width="14%">&nbsp;</th>
+                                <th width="43%" align="left">Tên Sản Phẩm</th>
+                                <th width="10%">Số Lượng</th>
+                                <th width="10%">Đơn Giá</th>
+                                <th width="12%">Thành Tiền</th>
+                                <th width="5%">&nbsp;</th>
+                            </tr>
+                            @foreach (var giohang in (List<GioHang>)Session["GioHang"])
+                            {
+                                <tr bgcolor="#FFFFFF" class=" product-detail">
+                                    <td valign="top"><img src="~/images/@giohang.SACH.Anhbia" /></td>
+                                    <td valign="top">@giohang.SACH.Tensach</td>
+                                    <td align="center" valign="top">@giohang.Soluong</td>
+                                    <td align="center" valign="top">@(String.Format("{0:N0}", giohang.SACH.Giaban))</td>
+                                    <td align="center" valign="top">@(String.Format("{0:N0}", giohang.SACH.Giaban * giohang.Soluong))</td>
+                                </tr>
+                            } @* end of foreach*@
+                            <tr>
+                                <th colspan="3" align="right">
+                                    <strong class="large-f">
+                                        Số lượng sách:
+                                        @{
+                                            List<GioHang> quantity = (List<GioHang>)Session["GioHang"];
+                                            var sl = (quantity.Sum(x => x.Soluong));
+                                        }
+                                        @sl
+                                    </strong>
+                                </th>
+                                <th colspan="2" align="right">
+                                    <strong class="large-f">
+                                        Tổng thành tiền:
+                                        @{
+                                            List<GioHang> temp = (List<GioHang>)Session["GioHang"];
+                                            var total = String.Format("{0:N0}", temp.Sum(x => x.Soluong * x.SACH.Giaban));
+                                        }
+                                        @total VND
+                                    </strong>
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <section class="checkout-holder">
+                        <section class="span9 first">
+
+                            <div class="accordion" id="accordion2">
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                            Vui lòng xem lại thông tin của bạn:
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne" class="accordion-body collapse in">
+                                        <div class="accordion-inner">
+                                            @using (Html.BeginForm("Xacnhandathang", "GioHang", FormMethod.Post, new { id = "customer-form" }))
+                                            {
+                                                <form class="form-horizontal">
+
+                                                    <ul class="billing-form">
+                                                        <li>
+                                                            <div class="control-group">
+                                                                <label class="control-label">Họ Tên<sup>*</sup></label>
+                                                                <div class="controls">
+                                                                    <input type="text" name="hoTen">
+                                                                </div>
+
+                                                            </div>
+                                                            </li>
+                                                        <li>
+                                                            <div class="control-group">
+                                                                <label class="control-label">Địa Chỉ<sup>*</sup></label>
+                                                                <div class="controls">
+                                                                    <input type="text" name="diaChi">
+                                                                </div>
+
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="control-group">
+                                                                <label class="control-label">Số Điện Thoại<sup>*</sup></label>
+                                                                <div class="controls">
+                                                                    <input type="text" name="soDienThoai">
+                                                                </div>
+                                                            </div>
+                                                        </li>
+
+                                                        <li>
+                                                            <div class="control-group">
+                                                                <div class="controls">
+                                                                    <button type="submit" class="more-btn">Xác nhận</button>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </form>
+                                            } @*end of using form xacnhandonhang*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </section>
+
+
+                </section>
+            </section>
+        </section>
+    }
+    else
+    {
+        <section id="content-holder" class="container-fluid container">
+            <h2>
+                Bạn không có đơn hàng nào? Hãy nhấn vào
+                @Html.ActionLink("đây", "Index", "BookStore") để trờ về trang chủ!!
+            </h2>
+        </section>
+    }
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script type="text/javascript">
+                $("#customer-form").validate(
+                    {
+                        rules:
+                        {
+                            hoTen: {
+                                required: true
+                            },
+                            diaChi: {
+                                required: true
+                            },
+                            soDienThoai: {
+                                required: true,
+                                number: true
+                            }
+                        },
+
+                        messages: {
+                            hoTen: {
+                                required: "Không được để trống"
+                            },
+                            diaChi: {
+                                required: "Không được để trống"
+                            },
+                            soDienThoai: {
+                                required: "Không được để trống",
+                                number: "Yêu cầu chỉ nhập số"
+                            }
+                        }
+                    });
+            </script>

@@ -1,0 +1,22 @@
+﻿
+@if (Session["UserName"] != null)
+{
+    using (Html.BeginForm("AdminLogOut", "Accounts", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @*Hello: @Session["UserName"].ToString()*@
+                @Html.ActionLink("Hello " + Session["UserName"].ToString() + "!", "Index", "DonDatHang", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="@Url.Action("AdminLogOut", "Accounts")">Log off</a></li>
+        </ul>
+    }
+}
+@*else
+    {
+        <ul class="nav navbar-nav navbar-right">
+            <li>@Html.ActionLink("Login", "Login", "Accounts")</li>
+            <li>@Html.ActionLink("Create an account", "Register", "Accounts")</li>
+        </ul>
+    }*@
+

@@ -1,0 +1,137 @@
+﻿@using MVCBookStore.Models;
+@{
+    ViewBag.Title = "Giỏ hàng của bạn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="content-holder" class="container-fluid container">
+    <section class="row-fluid">
+
+        <section class="span12 cart-holder">
+            <div class="heading-bar">
+                <h2>@ViewBag.Title</h2>
+                <span class="h-line"></span>
+            </div>
+            @{
+                if (Session["GioHang"] != null)
+                {
+                    using (Html.BeginForm("Update", "GioHang", FormMethod.Post))
+                    {
+                        <div class="cart-table-holder">
+                            @*<h2>Giỏ hàng của bạn rỗng!</h2>*@
+                            <table width="100%" border="0" cellpadding="10">
+                                <tr>
+                                    <th width="14%">&nbsp;</th>
+                                    <th width="43%" align="left">Tên Sản Phẩm</th>
+                                    <th width="6%"></th>
+                                    <th width="10%">Số Lượng</th>
+                                    <th width="10%">Đơn Giá</th>
+                                    <th width="12%">Thành Tiền</th>
+                                    <th width="5%">&nbsp;</th>
+                                </tr>
+                                @foreach (var giohang in (List<GioHang>)Session["GioHang"])
+                                {
+                                    <tr bgcolor="#FFFFFF" class=" product-detail">
+                                        <td valign="top"><img src="~/images/@giohang.SACH.Anhbia" /></td>
+                                        <td valign="top">@giohang.SACH.Tensach</td>
+                                        <td align="center" valign="top"><input type="submit" value="Update" /></td>
+                                        <td align="center" valign="top">
+                                            <input type="text" name="soluong" id="soluong" value="@giohang.Soluong" />
+                                            &nbsp;<span id="errmsg"></span>
+                                        </td>
+                                        <td align="center" valign="top">@(String.Format("{0:N0}", giohang.SACH.Giaban))</td>
+                                        <td align="center" valign="top">@(String.Format("{0:N0}", giohang.SACH.Giaban * giohang.Soluong))</td>
+                                        <td align="center" valign="top">@Html.ActionLink("Delete", "Delete", "GioHang", new { id = giohang.SACH.Masach }, new { onclick = "return confirm ('Bạn có chắc muốn xóa hàng này?');" })</td>
+                                    </tr>
+                                } @* end of foreach*@
+                                <tr>
+                                    <th colspan="4" align="right">
+                                        <strong class="large-f">
+                                            Số lượng sách:
+                                            @{
+                                                List<GioHang> quantity = (List<GioHang>)Session["GioHang"];
+                                                var sl = (quantity.Sum(x => x.Soluong));
+                                            }
+                                            @sl
+                                        </strong>
+                                    </th>
+                                    <th colspan="2" align="right">
+                                        <strong class="large-f">
+                                            Tổng thành tiền:
+                                            @{
+                                                List<GioHang> temp = (List<GioHang>)Session["GioHang"];
+                                                var total = String.Format("{0:N0}", temp.Sum(x => x.Soluong * x.SACH.Giaban));
+                                            }
+                                            @total VND
+                                        </strong>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th colspan="4">
+
+                                    </th>
+                                    @if (Session["MaKH"] != null)
+                                    {
+
+                                        <th colspan="3" align="center">
+                                            <div class="cart-option-box">
+                                                <a href="@Url.Action("Thanhtoan", "GioHang")" class="more-btn">thanh toán</a>
+                                            </div>
+                                        </th>
+                                    }
+                                    else
+                                    {
+                                        <th colspan="3" align="center">
+
+                                            <div class="cart-option-box">
+                                                <a href="@Url.Action("Login", "Accounts")" class="more-btn">thanh toán</a>
+                                            </div>
+                                        </th>
+                                    }
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+                    } @* end of using *@
+                } @*end of if session*@
+                else
+                {
+                    <div class="cart-table-holder">
+                        <h2>Giỏ hàng của bạn rỗng!</h2>
+                    </div>
+                }
+
+            }
+
+
+
+
+            <figure class="span4 first">
+
+            </figure>
+            <figure class="span4 first">
+                <div class="cart-option-box">
+                    <h4>@Html.ActionLink("Continue Shopping?", "Index", "BookStore")</h4>
+                </div>
+            </figure>
+
+        </section>
+    </section>
+</section>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // khi nhap vao textbox
+        $("#soluong").keypress(function (e) {
+            // neu khong nhap chu so thi hien ra loi
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //hien thi thong bao loi
+                $("#errmsg").html("Vui long nhap so!").show().fadeOut("slow");
+                return false;
+            }
+        });
+    });
+</script>
+

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<MVCBookStore.Models.SACH>
+
+@{
+    ViewBag.Title = "TiemkiemSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản lý sách</h2>
+<p>
+    @Html.ActionLink("Thêm sách mới", "Create")
+</p>
+<!-- Đoạn cần thêm -->
+@using (Html.BeginForm("Index", "SACH", FormMethod.Get))
+{
+    <p>
+        Title: @Html.TextBox("searchString") --- Chủ Đề: @Html.DropDownList("maCD", "All") --- Nhà Xuất Bản: @Html.DropDownList("maNXB", "All")  <button type="submit" class="btn btn-primary">Search</button>
+    </p>
+}
+<!---------------->
+
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Tên sách</th>
+        <th>Mô tả</th>
+        <th>Giá bán</th>
+        <th>Ảnh bìa</th>
+        <th>Ảnh mô tả</th>
+        <th>Ngày cập nhật</th>
+        <th>Số lượng tồn</th>
+        <th>Chủ đề</th>
+        <th>Nhà xuất bản</th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tensach)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mota)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Giaban)
+        </td>
+        <td>
+            <img src='@Url.Content("~/images/"+item.Anhbia)' />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Anhmota)
+        </td>
+        <td>
+            @String.Format("{0:MM/dd/yyyy}", item.Ngaycapnhat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soluongton)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CHUDE.TenChuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHAXUATBAN.TenNXB)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Masach }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Masach }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Masach })
+        </td>
+    </tr>
+    }
+
+</table>
